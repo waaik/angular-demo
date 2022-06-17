@@ -1,11 +1,14 @@
+<!--Recipes section-->
 <div class="row">
     <div class="col-md-5">
+        <!--Custom Click event for clicking on a recipe-->
         <app-recipe-list
         (recipeWasSelected)="selectedRecipe = $event"></app-recipe-list>
     </div>
     <div class="col-md-7">
+        <!--Displays selected recipes details-->
         <app-recipe-detail
-        *ngIf="selectedRecipe else infoText" 
+        *ngIf="selectedRecipe; else infoText" 
         [recipe]="selectedRecipe"></app-recipe-detail>
         <ng-template #infoText>
             <p>Please select a Recipe</p>

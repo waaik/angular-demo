@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Output, ViewChild } from '@angular/core';
 import { EventEmitter } from '@angular/core'
+import { NgForm } from '@angular/forms';
 import { Ingredient } from 'src/app/shared/ingredient';
 @Component({
   selector: 'app-shopping-edit',
@@ -7,8 +8,7 @@ import { Ingredient } from 'src/app/shared/ingredient';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
-  @ViewChild('amountInput') amountInputRef: ElementRef;
-  @ViewChild('nameInput') nameInputRef: ElementRef;
+  
   // creating new event listener
   @Output() ingredientAdded = new EventEmitter<Ingredient>();
   constructor() { }
@@ -16,10 +16,9 @@ export class ShoppingEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddItem(){
-    const ingName = this.nameInputRef.nativeElement.value
-    const ingAMount = this.amountInputRef.nativeElement.value
-    const newIngredient = new Ingredient(ingName, ingAMount);
+  onAddItem(form: NgForm){
+    const value = form.value;
+    const newIngredient = new Ingredient(value.name, value.amount);
     this.ingredientAdded.emit(newIngredient)
   }
 

@@ -7,9 +7,10 @@
 <div class="row">
     <div class="col-xs-12">
         <!--Populating the list with recipes-->
-        <app-recipe-item *ngFor="let recipeEl of recipes"
+        <app-recipe-item *ngFor="let recipeEl of recipes; let i = index"
         [recipe]="recipeEl"
-        (recipeSelected)="onRecipeSelected('recipeEl')"></app-recipe-item>
+        [index]="i"
+       ></app-recipe-item>
     </div>
 </div>
 
